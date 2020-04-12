@@ -4,7 +4,7 @@ HOST="$(uname -m)"
 JOBS=$(grep ^processor /proc/cpuinfo | wc -l)
 MAKEFLAGS=-j$JOBS
 
-ROOT_DIR=$(dirname $0)
+ROOT_DIR=$(dirname $(realpath $0))
 PATCH_DIR=$ROOT_DIR/patches/$TARGET
 PACKAGE_DIR=$ROOT_DIR/pkg
 WORK_DIR=$ROOT_DIR/work/$TARGET-gcc
