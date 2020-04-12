@@ -54,7 +54,7 @@ GDB_CONFIG="--target=$TARGET \
     --disable-etc \
     --without-mpfr \
     --without-lzma \
-    --with-python=no"
+    --with-python=yes"
 
 patch_sources ()
 {
