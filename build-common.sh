@@ -72,16 +72,15 @@ strip_binaries ()
 strip_target_objects ()
 {
     set +e
-    local PATH="$INSTALL_DIR/bin:$PATH"
     for subdir in $TARGET/lib/ lib/gcc/$TARGET/ libexec/gcc/$TARGET/; do
         [[ -d "$INSTALL_DIR/$subdir" ]] || continue
-        libs=$(find $INSTALL_DIR/$subdir -name \*.a -type f ! -path \*/plugin/\*)
+        libs=$(find "$INSTALL_DIR/$subdir" -name \*.a -type f ! -path \*/plugin/\*)
         for lib in $libs; do
-            $TARGET-objcopy --strip-debug $lib
+            "$INSTALL_DIR"/bin/$TARGET-strip --strip-unneeded $lib
         done
-        objs=$(find $INSTALL_DIR/$subdir -name \*.o -type f ! -path \*/plugin/\*)
+        objs=$(find "$INSTALL_DIR/$subdir" -name \*.o -type f ! -path \*/plugin/\*)
         for obj in $objs; do
-            $TARGET-objcopy --strip-debug $obj
+            "$INSTALL_DIR"/bin/$TARGET-strip --strip-unneeded $obj
         done
     done
     set -e
