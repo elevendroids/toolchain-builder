@@ -6,14 +6,14 @@ set -x
 TARGET=msp430-elf
 source $(dirname $0)/build-common.sh
 
-MSP430_PATCHES="msp430-gcc-8.3.1.25-source-patches"
+MSP430_PATCHES="msp430-gcc-9.2.0.50-source-patches"
 MSP430_PATCHES_ARCH="$MSP430_PATCHES.tar.bz2"
-MSP430_PATCHES_URL="http://software-dl.ti.com/msp430/msp430_public_sw/mcu/msp430/MSPGCC/8_3_2_2/export/$MSP430_PATCHES_ARCH"
+MSP430_PATCHES_URL="http://software-dl.ti.com/msp430/msp430_public_sw/mcu/msp430/MSPGCC/9_2_0_0/export/$MSP430_PATCHES_ARCH"
 
-BINUTILS_VER="2.26"
+BINUTILS_VER="2.34"
 BINUTILS="binutils-$BINUTILS_VER"
 BINUTILS_ARCH="$BINUTILS.tar.bz2"
-BINUTILS_URL="https://ftpmirror.gnu.org/binutils/$BINUTILS_ARCH"
+BINUTILS_URL="https://ftp.mirrorservice.org/sites/ftp.gnu.org/gnu/binutils/$BINUTILS_ARCH"
 BINUTILS_CONFIG="--target=$TARGET \
     --enable-languages=c,c++ \
     --disable-nls \
@@ -22,10 +22,10 @@ BINUTILS_CONFIG="--target=$TARGET \
     --disable-gdb \
     --disable-werror"
 
-GCC_VER="8.3.0"
+GCC_VER="9.2.0"
 GCC="gcc-$GCC_VER"
 GCC_ARCH="$GCC.tar.xz"
-GCC_URL="https://ftpmirror.gnu.org/gcc/$GCC/$GCC_ARCH"
+GCC_URL="https://ftp.mirrorservice.org/sites/ftp.gnu.org/gnu/gcc/$GCC/$GCC_ARCH"
 GCC_CONFIG="--target=$TARGET \
     --enable-languages=c,c++ \
     --disable-nls \
@@ -39,7 +39,7 @@ NEWLIB_ARCH="$NEWLIB.tar.gz"
 NEWLIB_URL="https://ftp.mirrorservice.org/sites/sourceware.org/pub/newlib/$NEWLIB_ARCH"
 #NEWLIB_CONFIG="--target=$TARGET"
 
-GDB_VER="8.1"
+GDB_VER="9.1"
 GDB="gdb-$GDB_VER"
 GDB_ARCH="$GDB.tar.xz"
 GDB_URL="https://ftp.mirrorservice.org/sites/sourceware.org/pub/gdb/releases/$GDB_ARCH"
@@ -47,6 +47,7 @@ GDB_CONFIG="--target=$TARGET \
     --enable-languages=c,c++ \
     --disable-nls \
     --enable-initfini-array \
+    --enable-tui \
     --disable-binutils \
     --disable-gas \
     --disable-ld \
