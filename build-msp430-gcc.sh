@@ -6,9 +6,9 @@ set -x
 TARGET=msp430-elf
 source $(dirname $0)/build-common.sh
 
-MSP430_PATCHES="msp430-gcc-9.2.0.50-source-patches"
+MSP430_PATCHES="msp430-gcc-9.3.1.11-source-patches"
 MSP430_PATCHES_ARCH="$MSP430_PATCHES.tar.bz2"
-MSP430_PATCHES_URL="http://software-dl.ti.com/msp430/msp430_public_sw/mcu/msp430/MSPGCC/9_2_0_0/export/$MSP430_PATCHES_ARCH"
+MSP430_PATCHES_URL="http://software-dl.ti.com/msp430/msp430_public_sw/mcu/msp430/MSPGCC/9_3_1_2/export/$MSP430_PATCHES_ARCH"
 
 BINUTILS_VER="2.34"
 BINUTILS="binutils-$BINUTILS_VER"
@@ -22,7 +22,7 @@ BINUTILS_CONFIG="--target=$TARGET \
     --disable-gdb \
     --disable-werror"
 
-GCC_VER="9.2.0"
+GCC_VER="9.3.0"
 GCC="gcc-$GCC_VER"
 GCC_ARCH="$GCC.tar.xz"
 GCC_URL="https://ftp.mirrorservice.org/sites/ftp.gnu.org/gnu/gcc/$GCC/$GCC_ARCH"
