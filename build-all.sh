@@ -6,3 +6,5 @@ BASE_DIR=$(dirname $0)
 $BASE_DIR/build-avr-gcc.sh
 $BASE_DIR/build-arm-none-eabi-gcc.sh
 $BASE_DIR/build-msp430-gcc.sh
+$BASE_DIR/build-riscv64-unknown-elf-gcc.sh
+
