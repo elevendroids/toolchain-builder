@@ -15,9 +15,9 @@ BINUTILS="binutils-$BINUTILS_VER"
 BINUTILS_ARCH="$BINUTILS.tar.bz2"
 BINUTILS_URL="https://ftp.mirrorservice.org/sites/ftp.gnu.org/gnu/binutils/$BINUTILS_ARCH"
 BINUTILS_CONFIG="--target=$TARGET \
+    --prefix=$INSTALL_DIR \
     --enable-languages=c,c++ \
     --disable-nls \
-    --enable-initfini-array \
     --disable-sim \
     --disable-gdb \
     --disable-werror"
@@ -27,9 +27,10 @@ GCC="gcc-$GCC_VER"
 GCC_ARCH="$GCC.tar.xz"
 GCC_URL="https://ftp.mirrorservice.org/sites/ftp.gnu.org/gnu/gcc/$GCC/$GCC_ARCH"
 GCC_CONFIG="--target=$TARGET \
+    --prefix=$INSTALL_DIR \
+    --libexecdir=$INSTALL_DIR/lib \
     --enable-languages=c,c++ \
     --disable-nls \
-    --enable-initfini-array \
     --enable-target-optspace \
     --enable-newlib-nano-formatted-io"
 
@@ -44,10 +45,9 @@ GDB="gdb-$GDB_VER"
 GDB_ARCH="$GDB.tar.xz"
 GDB_URL="https://ftp.mirrorservice.org/sites/sourceware.org/pub/gdb/releases/$GDB_ARCH"
 GDB_CONFIG="--target=$TARGET \
+    --prefix=$INSTALL_DIR \
     --enable-languages=c,c++ \
     --disable-nls \
-    --enable-initfini-array \
-    --enable-tui \
     --disable-binutils \
     --disable-gas \
     --disable-ld \
@@ -55,7 +55,7 @@ GDB_CONFIG="--target=$TARGET \
     --disable-etc \
     --without-mpfr \
     --without-lzma \
-    --with-python=yes"
+    --with-python=no"
 
 patch_sources ()
 {
