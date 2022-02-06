@@ -10,29 +10,23 @@ GCC_VER="2022.01.17"
 GCC="riscv-gcc"
 TOOLCHAIN="riscv-gnu-toolchain"
 TOOLCHAIN_REPO_URL="https://github.com/riscv-collab/${TOOLCHAIN}.git"
-TOOLCHAIN_CONFIG="--prefix=${INSTALL_DIR} --enable-multilib"
+TOOLCHAIN_CONFIG="--enable-multilib"
 
 GDB_CONFIG="--with-python=no"
 
 download_sources ()
 {
-    git clone --depth 1 --branch $GCC_VER $TOOLCHAIN_REPO_URL $SRC_DIR
-    pushd $SRC_DIR
+    local TOOLCHAIN_DIR=$SRC_DIR/$TOOLCHAIN
+    git clone --depth 1 --branch $GCC_VER $TOOLCHAIN_REPO_URL $TOOLCHAIN_DIR
+    pushd $TOOLCHAIN_DIR
     git submodule update --init --recommend-shallow riscv-{binutils,gcc,gdb,newlib}
     popd
-    GCC_VER=$(<$SRC_DIR/$GCC/gcc/BASE-VER)
-}
-
-configure_toolchain ()
-{
-    pushd $BUILD_DIR
-    $SRC_DIR/configure $TOOLCHAIN_CONFIG
-    popd
+    GCC_VER=$(<$TOOLCHAIN_DIR/$GCC/gcc/BASE-VER)
 }
 
 build_toolchain ()
 {
-    pushd $BUILD_DIR
+    pushd $BUILD_DIR/$TOOLCHAIN
     make $MAKEFLAGS GDB_TARGET_FLAGS_EXTRA=$GDB_CONFIG
     popd
 }
@@ -42,7 +36,7 @@ recreate_dir "$SRC_DIR"
 recreate_dir "$INSTALL_DIR"
 download_sources
 
-configure_toolchain
+configure $TOOLCHAIN $TOOLCHAIN_CONFIG
 build_toolchain
 
 strip_binaries

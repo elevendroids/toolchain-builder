@@ -11,7 +11,6 @@ BINUTILS="binutils-$BINUTILS_VER"
 BINUTILS_ARCH="$BINUTILS.tar.xz"
 BINUTILS_URL="https://ftp.mirrorservice.org/sites/ftp.gnu.org/gnu/binutils/$BINUTILS_ARCH"
 BINUTILS_CONFIG="--target=$TARGET \
-    --prefix=$INSTALL_DIR \
     --enable-languages=c,c++ \
     --disable-nls"
 
@@ -20,7 +19,6 @@ GCC="gcc-$GCC_VER"
 GCC_ARCH="$GCC.tar.xz"
 GCC_URL="https://ftp.mirrorservice.org/sites/ftp.gnu.org/gnu/gcc/$GCC/$GCC_ARCH"
 GCC_CONFIG="--target=$TARGET \
-    --prefix=$INSTALL_DIR \
     --libexecdir=$INSTALL_DIR/lib \
     --enable-languages=c,c++ \
     --disable-nls \
@@ -41,7 +39,6 @@ GDB="gdb-$GDB_VER"
 GDB_ARCH="$GDB.tar.xz"
 GDB_URL="https://ftp.mirrorservice.org/sites/sourceware.org/pub/gdb/releases/$GDB_ARCH"
 GDB_CONFIG="--target=$TARGET \
-    --prefix=$INSTALL_DIR \
     --disable-nls \
     --disable-binutils \
     --disable-gas \
