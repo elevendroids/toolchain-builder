@@ -20,7 +20,7 @@ build_toolchain ()
     echo "Building version ${SRC_VERSION}"
     ./install-sources.sh --skip_steps=mingw32
     ./build-prerequisites.sh --skip_steps=mingw32
-    ./build-toolchain.sh --skip_steps=mingw32,howto,manual,package_sources,md5_checksum
+    ./build-toolchain.sh --skip_steps=gdb-with-python,mingw32,howto,manual,package_sources,md5_checksum
     unset SRC_VERSION
     popd
 }
